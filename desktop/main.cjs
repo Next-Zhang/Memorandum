@@ -90,7 +90,7 @@ else {
     if (service) {
       event.preventDefault();
       // Wait for accepted writes before exiting so settings and edits are not lost.
-      service.queue.finally(() => app.quit());
+      service.queue.finally(() => setImmediate(() => app.quit()));
     }
   });
   app.on('will-quit', () => tray?.destroy());

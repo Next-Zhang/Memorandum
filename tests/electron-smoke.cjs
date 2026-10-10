@@ -6,6 +6,7 @@ const os = require('node:os');
 const directory = mkdtempSync(path.join(os.tmpdir(), 'memorandum-smoke-'));
 app.setPath('userData', directory);
 const deadline = setTimeout(() => { console.error('Desktop smoke test timed out'); app.exit(1); }, 30000);
+app.on('quit', () => { clearTimeout(deadline); console.log('Desktop shutdown passed'); });
 app.on('browser-window-created', (_, window) => {
   window.hide();
   window.once('ready-to-show', () => window.hide());
@@ -23,7 +24,7 @@ app.on('browser-window-created', (_, window) => {
         return { preload: true, CRUD: true, info: await window.memo.info() };
       })()`);
       console.log('Desktop smoke test passed:', JSON.stringify(result));
-      clearTimeout(deadline); app.quit();
+      app.quit();
     } catch (error) { console.error(error); clearTimeout(deadline); app.exit(1); }
   });
 });
