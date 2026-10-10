@@ -1,0 +1,18 @@
+# Dependencies and build output
+node_modules/
+release/
+dist/
+coverage/
+# Local data, credentials and logs
+.env
+.env.*
+!.env.example
+*.log
+.smoke-data/
+*.corrupt-*
+memos.json*
+# Editor and operating system
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

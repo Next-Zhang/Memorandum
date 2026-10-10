@@ -1,0 +1,44 @@
+{
+  "name": "shiguang-memo",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "author": "Next-Zhang",
+  "repository": { "type": "git", "url": "https://github.com/Next-Zhang/Memorandum.git" },
+  "description": "拾光 · 桌面备忘录",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "test": "node --test tests/*.test.js",
+    "test:desktop": "electron tests/electron-smoke.cjs"
+  },
+  "main": "desktop/main.cjs",
+  "build": {
+    "appId": "com.shiguang.memo",
+    "productName": "Shiguang Memo",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "desktop/**/*",
+      "backend/**/*",
+      "index.html",
+      "app.js",
+      "style.css",
+      "model.js",
+      "package.json"
+    ],
+    "win": {
+      "target": "portable",
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "Shiguang-Memo-${version}-Windows.exe"
+    }
+  },
+  "devDependencies": {
+    "electron": "^44.7.0",
+    "electron-builder": "^26.15.3"
+  }
+}
